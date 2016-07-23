@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+    nginx:
+        image: nginx:stable
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - php:php
+        volumes:
+            - ./www:/var/www/html
+            - ./site-conf:/etc/nginx/conf.d
+    php:
+        image: php:7.0.8-fpm
+        ports:
+            - 9000:9000
+        volumes:
+            - ./www:/var/www/html
